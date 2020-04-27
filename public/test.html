@@ -8,13 +8,14 @@
 <body>
   <video id="localVideo"></video>
   <button id="getCamera" onclick="getCandM()">Get Access to camera and mic</button>
-  <p id="error" style="display: none;"></p>
+  <p id="errorEl" style="display: none;"></p>
 </body>
 <script>
   const video = document.getElementById("localVideo");
   const getAccess = document.getElementById("getCamera");
-  const error = document.getElementById("error");
-
+  const errorElement = document.getElementById("errorEl");
+  errorElement.innerHTML = 'Error goes here';
+  errorElement.style.display = "block";
   function getCandM() {
     // navigator.mediaDevices.getUserMedia({audio: true, video: true}).then((stream) => {
     //   video.srcObject = stream;
@@ -31,7 +32,7 @@
         video.play();
       }
   },    function (err) {
-      error.innerHTML = `${err}`,
+      errorElement.innerHTML += `${err}`;
       console.log(err)
     });
 
