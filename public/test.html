@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Test</title>
+</head>
+<body>
+  <video id="localVideo"></video>
+  <button id="getCamera" onclick="getCandM()">Get Access to camera and mic</button>
+  <p id="error" style="display: none;"></p>
+</body>
+<script>
+  const video = document.getElementById("localVideo");
+  const getAccess = document.getElementById("getCamera");
+
+  function getCandM() {
+    navigator.mediaDevices.getUserMedia({audio: true, video: true}).then((stream) => {
+      video.srcObject = stream;
+      video.onloadedmetadata = function(e) {
+        video.play();
+      }
+    }).catch(err => {
+      console.log(err)
+    })
+  }
+</script>
+</html>
