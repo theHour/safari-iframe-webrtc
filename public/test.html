@@ -16,15 +16,27 @@
   const error = document.getElementById("error");
 
   function getCandM() {
-    navigator.mediaDevices.getUserMedia({audio: true, video: true}).then((stream) => {
+    // navigator.mediaDevices.getUserMedia({audio: true, video: true}).then((stream) => {
+    //   video.srcObject = stream;
+    //   video.onloadedmetadata = function(e) {
+    //     video.play();
+    //   }
+    // }).catch(err => {
+    //   error.innerHTML = `${err}`
+    //   console.log(err)
+    // })
+    navigator.getUserMedia({audio: true, video: true}, function(stream) {
       video.srcObject = stream;
       video.onloadedmetadata = function(e) {
         video.play();
       }
-    }).catch(err => {
-      error.innerHTML = `${err}`
+  },    function (err) {
+      error.innerHTML = `${err}`,
       console.log(err)
-    })
+    });
+
+
+ 
   }
 </script>
 </html>
