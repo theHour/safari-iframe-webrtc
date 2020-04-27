@@ -13,6 +13,7 @@
 <script>
   const video = document.getElementById("localVideo");
   const getAccess = document.getElementById("getCamera");
+  const error = document.getElementById("error");
 
   function getCandM() {
     navigator.mediaDevices.getUserMedia({audio: true, video: true}).then((stream) => {
@@ -21,6 +22,7 @@
         video.play();
       }
     }).catch(err => {
+      error.innerHTML = `${err}`
       console.log(err)
     })
   }
